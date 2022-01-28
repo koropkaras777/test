@@ -1,7 +1,7 @@
 import { Column, Model, Table } from 'sequelize-typescript';
 import { ApiProperty } from '@nestjs/swagger';
 import { IsEmail, IsNotEmpty, Length } from 'class-validator';
-import * as bcrypt from 'bcrypt';
+import { Exclude } from 'class-transformer';
 
 @Table
 export class User extends Model<User> {
@@ -13,6 +13,7 @@ export class User extends Model<User> {
   @Column
   @ApiProperty()
   @IsNotEmpty()
+  @Exclude({ toPlainOnly: true })
   password: string;
 
   @Column
